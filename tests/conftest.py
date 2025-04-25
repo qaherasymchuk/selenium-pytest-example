@@ -76,7 +76,7 @@ def driver() -> WebDriver:
             options = webdriver.ChromeOptions()
             mobile_emulation = {"deviceName": "iPhone 12 Pro"}
             options.add_experimental_option("mobileEmulation", mobile_emulation)
-            # options.add_argument("--headless=new")
+            options.add_argument("--headless=new")
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-dev-shm-usage")
             options.add_argument("--disable-gpu")
