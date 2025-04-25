@@ -1,4 +1,4 @@
-Test runs:
+Test runs:  
 [![UI tests](https://github.com/qaherasymchuk/selenium-pytest-example/actions/workflows/example_selenium_tests.yml/badge.svg)](https://github.com/qaherasymchuk/selenium-pytest-example/actions/workflows/example_selenium_tests.yml)
 
 Demo:
