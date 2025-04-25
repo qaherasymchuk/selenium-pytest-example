@@ -10,7 +10,12 @@ Demo:
 # 📦 Selenium with Pytest-BDD Example
 
 This project demonstrates how to use **Selenium** for browser automation together with **pytest** and **pytest-bdd** for behavior-driven development (BDD) testing in Python.
+There is GitHub Actions available:
+- pylint check
+- run UI tests
 
+Last step of the test saves screenshot which is available as artifact:
+![img.png](assets/img_actions.png)
 
 ## 🧪 Testing
 
