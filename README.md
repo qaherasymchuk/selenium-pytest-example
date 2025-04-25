@@ -1,5 +1,8 @@
+Pylint check:  
+[![UI tests](https://github.com/qaherasymchuk/selenium-pytest-example/actions/workflows/run_pylint_check.yml/badge.svg)](https://github.com/qaherasymchuk/selenium-pytest-example/actions/workflows/run_pylint_check.yml)
+
 Test runs:  
-[![UI tests](https://github.com/qaherasymchuk/selenium-pytest-example/actions/workflows/example_selenium_tests.yml/badge.svg)](https://github.com/qaherasymchuk/selenium-pytest-example/actions/workflows/example_selenium_tests.yml)
+[![UI tests](https://github.com/qaherasymchuk/selenium-pytest-example/actions/workflows/run_selenium_tests.yml/badge.svg)](https://github.com/qaherasymchuk/selenium-pytest-example/actions/workflows/run_selenium_tests.yml)
 
 Demo:
 ![Demo](assets/demo.gif)
