@@ -1,3 +1,4 @@
+@example
 Feature: Screenshot of streamer page
   Scenario: User is able to find and open streamer page
     Given Twitch home page is opened
