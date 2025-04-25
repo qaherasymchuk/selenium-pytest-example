@@ -1,0 +1,59 @@
+name: UI tests
+
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    branches: [ main ]
+  repository_dispatch:
+    branches: [ main ]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.12.2
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.12.2
+
+    - name: Run pylint check
+      run: |
+        python -m pip install --upgrade pip
+        pip install pipenv
+        pipenv install
+        pipenv run pylint ./
+
+    - name: Run tests
+      env:
+        BASE_URL: https://twitch.tv/
+        BROWSER: Mobile_Emulator
+        SCREENSHOTS: ./resources/screenshots/
+        TEST_LOG_DIR_PATH: ./resources/logs/
+        TEST_LOG_LEVEL: INFO
+      run: |
+        pipenv run pytest ./tests/
+
+    - name: Surface failing tests
+      if: always()
+      uses: pmeier/pytest-results-action@main
+      with:
+        # A list of JUnit XML files, directories containing the former, and wildcard
+        # patterns to process.
+        # See @actions/glob for supported patterns.
+        path: ./pytest-results.xml
+
+        # (Optional) Add a summary of the results at the top of the report
+        summary: true
+
+        # (Optional) Select which results should be included in the report.
+        # Follows the same syntax as `pytest -r`
+        display-options: fEX
+
+        # (Optional) Fail the workflow if no JUnit XML was found.
+        fail-on-empty: true
+
+        # (Optional) Title of the test results section in the workflow summary
+        title: Test results
