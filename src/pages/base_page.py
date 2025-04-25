@@ -2,7 +2,7 @@ import os
 import time
 
 from loguru import logger
-from selenium.common import NoSuchElementException, ElementNotInteractableException, TimeoutException
+from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException, TimeoutException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
@@ -20,6 +20,7 @@ class BasePage:
         self.wait = WebDriverWait(driver, timeout=DEFAULT_TIMEOUT, ignored_exceptions=ignored_exceptions)
         self.base_url = os.environ.get('BASE_URL')
         self.accept_cookies_button = (By.XPATH, '//*[@data-a-target="consent-banner-accept"]')
+        self.proceed_with_cookies_button = (By.XPATH, '//*[contains(@class, "consent-banner")]/div/div/div[3]/div[2]/button')
         self.footer = (By.XPATH, '//*[@id="root"]/div[2]')
 
     def wait_for_element_to_be_visible(self, locator: tuple[str, str]) -> WebElement:
@@ -78,4 +79,9 @@ class BasePage:
 
     def accept_cookies(self):
         logger.info('Accept Cookies')
-        self.wait_for_element_to_be_visible(self.accept_cookies_button).click()
+        if accept_cookies_button := self.wait_for_element_to_be_visible(self.accept_cookies_button):
+            accept_cookies_button.click()
+            self.wait_for_element_disappears(self.accept_cookies_button)
+        if proceed_button := self.wait_for_element_to_be_visible(self.proceed_with_cookies_button):
+            proceed_button.click()
+            self.wait_for_element_disappears(self.proceed_with_cookies_button)
