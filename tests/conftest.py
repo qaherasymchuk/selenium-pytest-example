@@ -58,7 +58,14 @@ def driver() -> WebDriver:
 
     match browser.lower():
         case "chrome":
-            driver = webdriver.Chrome()
+            options = webdriver.ChromeOptions()
+            options.add_argument("--headless=new")
+            options.add_argument("--no-sandbox")
+            options.add_argument("--disable-dev-shm-usage")
+            options.add_argument("--disable-gpu")
+            options.add_argument("--disable-dev-tools")
+            options.add_argument("--window-size=1920,1080")
+            driver = webdriver.Chrome(options=options)
         case "firefox":
             driver = webdriver.Firefox()
         case "ie":
@@ -69,6 +76,10 @@ def driver() -> WebDriver:
             options = webdriver.ChromeOptions()
             mobile_emulation = {"deviceName": "iPhone 12 Pro"}
             options.add_experimental_option("mobileEmulation", mobile_emulation)
+            options.add_argument("--headless=new")
+            options.add_argument("--no-sandbox")
+            options.add_argument("--disable-dev-shm-usage")
+            options.add_argument("--disable-gpu")
             driver = webdriver.Chrome(options=options)
         case _:
             raise ValueError(f"Unsupported browser: {browser}")

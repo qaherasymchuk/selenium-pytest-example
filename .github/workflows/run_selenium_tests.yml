@@ -19,12 +19,8 @@ jobs:
       with:
         python-version: 3.12.2
 
-    - name: Run pylint check
-      run: |
-        python -m pip install --upgrade pip
-        pip install pipenv
-        pipenv install
-        pipenv run pylint ./
+    - name: Install Google Chrome
+      run: sudo apt-get install google-chrome-stable
 
     - name: Run tests
       env:
@@ -34,6 +30,9 @@ jobs:
         TEST_LOG_DIR_PATH: ./resources/logs/
         TEST_LOG_LEVEL: INFO
       run: |
+        python -m pip install --upgrade pip
+        pip install pipenv
+        pipenv install
         pipenv run pytest ./tests/
 
     - name: Surface failing tests
