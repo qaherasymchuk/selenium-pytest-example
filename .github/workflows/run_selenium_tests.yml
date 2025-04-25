@@ -7,6 +7,8 @@ on:
     branches: [ main ]
   repository_dispatch:
     branches: [ main ]
+  push:
+    branches: [ main ]
 
 jobs:
   tests:

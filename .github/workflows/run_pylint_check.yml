@@ -1,4 +1,4 @@
-name: UI tests
+name: PyLint check
 
 on:
   pull_request:
@@ -6,6 +6,8 @@ on:
   workflow_dispatch:
     branches: [ main ]
   repository_dispatch:
+    branches: [ main ]
+  push:
     branches: [ main ]
 
 jobs:
